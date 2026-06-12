@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wVmSxhHeHZQ=",
+  "success": true,
+  "projectFilePath": "C:\\dev\\LoanShark\\src\\LoanShark.Web\\LoanShark.Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ZASPK\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.5\\microsoft.aspnetcore.app.internal.assets.10.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

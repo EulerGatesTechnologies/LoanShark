@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/LoanShark.Api/LoanShark.Api.csproj" />
+    <Project Path="src/LoanShark.AppHost/LoanShark.AppHost.csproj" />
+    <Project Path="src/LoanShark.ServiceDefaults/LoanShark.ServiceDefaults.csproj" />
+    <Project Path="src/LoanShark.SharedUI/LoanShark.SharedUI.csproj" />
+    <Project Path="src/LoanShark.Web/LoanShark.Web.csproj" />
+  </Folder>
+</Solution>

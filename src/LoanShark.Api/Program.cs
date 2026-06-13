@@ -1,3 +1,5 @@
+using LoanShark.Api.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
@@ -16,6 +18,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.MapUserEndpoints();
+app.MapLoanEndpoints();
 
 var summaries = new[]
 {

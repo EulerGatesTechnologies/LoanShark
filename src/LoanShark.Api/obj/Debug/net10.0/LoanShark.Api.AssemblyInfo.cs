@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoanShark.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f93502331baabd2264cdd829f35a4af6ec0e93c6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+62a81d11680b3af7cb93ece2ba57ace482ce0c60")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoanShark.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoanShark.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LoanShark.E2E.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+032555e56c38fae37ab2fdaa081b97013c0ba719")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0293471d496b61b78380aa47249c6819f2c53304")]
 [assembly: System.Reflection.AssemblyProductAttribute("LoanShark.E2E.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LoanShark.E2E.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

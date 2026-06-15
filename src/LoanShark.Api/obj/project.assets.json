@@ -26,6 +26,15 @@
           "buildTransitive/net10.0/Aspire.Microsoft.EntityFrameworkCore.SqlServer.targets": {}
         }
       },
+      "BCrypt.Net-Next/4.2.0": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/BCrypt-Net-Next.dll": {}
+        },
+        "runtime": {
+          "lib/net10.0/BCrypt-Net-Next.dll": {}
+        }
+      },
       "Humanizer.Core/2.14.1": {
         "type": "package",
         "compile": {
@@ -38,6 +47,25 @@
             "related": ".xml"
           }
         }
+      },
+      "Microsoft.AspNetCore.Authentication.JwtBearer/10.0.9": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.0.1"
+        },
+        "compile": {
+          "lib/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       },
       "Microsoft.AspNetCore.OpenApi/10.0.7": {
         "type": "package",
@@ -1443,6 +1471,31 @@
         "lib/net9.0/Aspire.Microsoft.EntityFrameworkCore.SqlServer.xml"
       ]
     },
+    "BCrypt.Net-Next/4.2.0": {
+      "sha512": "gwLD2KfCuwQesP17aVh4h6lpiMPEVt5Lbpndo0ej903hNUUTtyxt3ARdDjmuydBRTAUICc7OVKVbaOvc6SQYXA==",
+      "type": "package",
+      "path": "bcrypt.net-next/4.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt.net-next.4.2.0.nupkg.sha512",
+        "bcrypt.net-next.nuspec",
+        "ico.png",
+        "lib/net10.0/BCrypt-Net-Next.dll",
+        "lib/net10.0/BCrypt.Net-Next.xml",
+        "lib/net462/BCrypt-Net-Next.dll",
+        "lib/net462/BCrypt.Net-Next.xml",
+        "lib/net472/BCrypt-Net-Next.dll",
+        "lib/net472/BCrypt.Net-Next.xml",
+        "lib/net48/BCrypt-Net-Next.dll",
+        "lib/net48/BCrypt.Net-Next.xml",
+        "lib/netstandard2.0/BCrypt-Net-Next.dll",
+        "lib/netstandard2.0/BCrypt.Net-Next.xml",
+        "lib/netstandard2.1/BCrypt-Net-Next.dll",
+        "lib/netstandard2.1/BCrypt.Net-Next.xml",
+        "readme.md"
+      ]
+    },
     "Humanizer.Core/2.14.1": {
       "sha512": "lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "type": "package",
@@ -1459,6 +1512,22 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "Microsoft.AspNetCore.Authentication.JwtBearer/10.0.9": {
+      "sha512": "Hs5NDsGm8YicDDNx5RoBIT+H2AB9R27MvZ2gHoupTiHr+nnH3VxzY7DcmlbJ3b5DvvOhK35lWt/9Odtrq9sjtA==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/10.0.9",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
+        "lib/net10.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
+        "microsoft.aspnetcore.authentication.jwtbearer.10.0.9.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
     "Microsoft.AspNetCore.OpenApi/10.0.7": {
@@ -4018,7 +4087,9 @@
   "projectFileDependencyGroups": {
     "net10.0": [
       "Aspire.Microsoft.EntityFrameworkCore.SqlServer >= 13.4.3",
+      "BCrypt.Net-Next >= 4.2.0",
       "LoanShark.ServiceDefaults >= 1.0.0",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 10.0.9",
       "Microsoft.AspNetCore.OpenApi >= 10.0.7",
       "Microsoft.EntityFrameworkCore.Design >= 10.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 10.0.9"
@@ -4050,6 +4121,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4083,6 +4155,14 @@
           "Aspire.Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[13.4.3, )"
+          },
+          "BCrypt.Net-Next": {
+            "target": "Package",
+            "version": "[4.2.0, )"
+          },
+          "Microsoft.AspNetCore.Authentication.JwtBearer": {
+            "target": "Package",
+            "version": "[10.0.9, )"
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
@@ -4118,7 +4198,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.300-preview.0.26177.108/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.301/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

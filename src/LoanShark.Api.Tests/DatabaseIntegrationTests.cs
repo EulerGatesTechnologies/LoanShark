@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
 using LoanShark.Api.Entities;
+using Xunit;
 
 namespace LoanShark.Api.Tests;
 

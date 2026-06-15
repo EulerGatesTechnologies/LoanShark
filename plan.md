@@ -32,5 +32,9 @@
 
 ## 5. Next Phases
 * [x] Choose Tech Stack
-* [ ] Database Schema Design
-* [ ] Scaffold Project
+* [x] Database Schema Design
+* [x] Scaffold Project
+* [x] Implement Authentication & Profiles (API + Web)
+* [x] Implement Loan Marketplace (API + Web)
+* [x] Implement Ledger & Wallet (API + Web)
+* [x] Run Application & Local Setup

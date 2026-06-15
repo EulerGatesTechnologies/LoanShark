@@ -1,0 +1,61 @@
+@page "/login"
+@using LoanShark.Web.Services
+@inject AuthService AuthService
+@inject NavigationManager NavigationManager
+@inject JwtAuthenticationStateProvider AuthStateProvider
+@inject IJSRuntime JSRuntime
+
+<h3>Login</h3>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+<div class="mb-3">
+    <label>Email:</label>
+    <input @bind="email" class="form-control" />
+</div>
+<div class="mb-3">
+    <label>Password:</label>
+    <input type="password" @bind="password" class="form-control" />
+</div>
+<button @onclick="LoginAsync" class="btn btn-primary">Login</button>
+<button @onclick="RegisterAsync" class="btn btn-secondary ms-2">Register</button>
+
+@code {
+    private string email = "";
+    private string password = "";
+    private string errorMessage = "";
+
+    private async Task RegisterAsync()
+    {
+        errorMessage = "";
+        var success = await AuthService.RegisterAsync(email, password);
+        if (success)
+        {
+            await LoginAsync();
+        }
+        else
+        {
+            errorMessage = "Registration failed. Email might already exist.";
+        }
+    }
+
+    private async Task LoginAsync()
+    {
+        errorMessage = "";
+        var token = await AuthService.LoginAsync(email, password);
+        
+        if (!string.IsNullOrEmpty(token))
+        {
+            await JSRuntime.InvokeVoidAsync("localStorage.setItem", "authToken", token);
+            AuthStateProvider.NotifyUserAuthentication(token);
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            errorMessage = "Invalid login attempt.";
+        }
+    }
+}

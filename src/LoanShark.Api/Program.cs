@@ -1,4 +1,7 @@
+using System.Text;
 using LoanShark.Api.Endpoints;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,8 +9,26 @@ builder.AddServiceDefaults();
 builder.AddSqlServerDbContext<LoanShark.Api.Entities.LoanSharkDbContext>("sqldata");
 
 // Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        var jwtSettings = builder.Configuration.GetSection("Jwt");
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtSettings["Key"] ?? throw new InvalidOperationException("JWT key not configured."))),
+            ValidateIssuer = true,
+            ValidIssuer = jwtSettings["Issuer"],
+            ValidateAudience = true,
+            ValidAudience = jwtSettings["Audience"],
+            ValidateLifetime = true,
+            ClockSkew = TimeSpan.Zero
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -15,37 +36,22 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
+    
+    // Auto-apply migrations for seamless local development
+    using var scope = app.Services.CreateScope();
+    var db = scope.ServiceProvider.GetRequiredService<LoanShark.Api.Entities.LoanSharkDbContext>();
+    db.Database.EnsureCreated();
 }
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapUserEndpoints();
 app.MapLoanEndpoints();
-
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+app.MapWalletEndpoints();
 
 app.Run();
 
 public partial class Program { }
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

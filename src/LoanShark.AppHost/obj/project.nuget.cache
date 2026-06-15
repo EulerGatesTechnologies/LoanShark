@@ -1,13 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "+LmHGYER5Ts=",
+  "dgSpecHash": "LLqGXgu1Fj0=",
   "success": true,
   "projectFilePath": "C:\\dev\\LoanShark\\src\\LoanShark.AppHost\\LoanShark.AppHost.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\ZASPK\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\13.1.2\\aspire.dashboard.sdk.win-x64.13.1.2.nupkg.sha512",
+    "C:\\Users\\ZASPK\\.nuget\\packages\\aspire.dashboard.sdk.win-x64\\13.4.3\\aspire.dashboard.sdk.win-x64.13.4.3.nupkg.sha512",
     "C:\\Users\\ZASPK\\.nuget\\packages\\aspire.hosting\\13.4.3\\aspire.hosting.13.4.3.nupkg.sha512",
-    "C:\\Users\\ZASPK\\.nuget\\packages\\aspire.hosting.apphost\\13.1.2\\aspire.hosting.apphost.13.1.2.nupkg.sha512",
-    "C:\\Users\\ZASPK\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.1.2\\aspire.hosting.orchestration.win-x64.13.1.2.nupkg.sha512",
+    "C:\\Users\\ZASPK\\.nuget\\packages\\aspire.hosting.apphost\\13.4.3\\aspire.hosting.apphost.13.4.3.nupkg.sha512",
+    "C:\\Users\\ZASPK\\.nuget\\packages\\aspire.hosting.orchestration.win-x64\\13.4.3\\aspire.hosting.orchestration.win-x64.13.4.3.nupkg.sha512",
     "C:\\Users\\ZASPK\\.nuget\\packages\\aspire.hosting.sqlserver\\13.4.3\\aspire.hosting.sqlserver.13.4.3.nupkg.sha512",
     "C:\\Users\\ZASPK\\.nuget\\packages\\aspnetcore.healthchecks.sqlserver\\9.0.0\\aspnetcore.healthchecks.sqlserver.9.0.0.nupkg.sha512",
     "C:\\Users\\ZASPK\\.nuget\\packages\\aspnetcore.healthchecks.uris\\9.0.0\\aspnetcore.healthchecks.uris.9.0.0.nupkg.sha512",

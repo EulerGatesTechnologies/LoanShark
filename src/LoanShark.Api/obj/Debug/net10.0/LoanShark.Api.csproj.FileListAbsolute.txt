@@ -6,7 +6,10 @@ C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\LoanShark.Api.deps.json
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\LoanShark.Api.runtimeconfig.json
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\LoanShark.Api.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\LoanShark.Api.pdb
+C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Aspire.Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\BCrypt-Net-Next.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Humanizer.dll
+C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Bcl.Cryptography.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Build.Framework.dll
@@ -17,6 +20,8 @@ C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.CodeAnalysis.Work
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.CodeAnalysis.ExternalAccess.RazorCompiler.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Data.SqlClient.dll
+C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Data.SqlClient.Extensions.Abstractions.dll
+C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Data.SqlClient.Internal.Logging.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Abstractions.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.EntityFrameworkCore.Design.dll
@@ -27,6 +32,7 @@ C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Extensions.Compli
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Extensions.DependencyInjection.AutoActivation.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Extensions.DependencyModel.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Extensions.Diagnostics.ExceptionSummarization.dll
+C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Extensions.Http.Diagnostics.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Extensions.Http.Resilience.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Extensions.Resilience.dll
@@ -53,6 +59,7 @@ C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\OpenTelemetry.Extensions.Ho
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\OpenTelemetry.Instrumentation.AspNetCore.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\OpenTelemetry.Instrumentation.Http.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\OpenTelemetry.Instrumentation.Runtime.dll
+C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\OpenTelemetry.Instrumentation.SqlClient.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Polly.Core.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Polly.Extensions.dll
 C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Polly.RateLimiting.dll
@@ -174,10 +181,3 @@ C:\dev\LoanShark\src\LoanShark.Api\obj\Debug\net10.0\refint\LoanShark.Api.dll
 C:\dev\LoanShark\src\LoanShark.Api\obj\Debug\net10.0\LoanShark.Api.pdb
 C:\dev\LoanShark\src\LoanShark.Api\obj\Debug\net10.0\LoanShark.Api.genruntimeconfig.cache
 C:\dev\LoanShark\src\LoanShark.Api\obj\Debug\net10.0\ref\LoanShark.Api.dll
-C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Aspire.Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Data.SqlClient.Extensions.Abstractions.dll
-C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Data.SqlClient.Internal.Logging.dll
-C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll
-C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\OpenTelemetry.Instrumentation.SqlClient.dll
-C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\System.Security.Cryptography.Pkcs.dll
-C:\dev\LoanShark\src\LoanShark.Api\bin\Debug\net10.0\runtimes\win\lib\net10.0\System.Security.Cryptography.Pkcs.dll

@@ -1,0 +1,40 @@
+﻿<Project>
+  <ItemGroup>
+    <StaticWebAssetEndpoint Include="_content/LoanShark.SharedUI/background.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\background.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-WeOKCkI7IdJHs2kCqsKgLfiWX4/sNPbaRUspOLefkCY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"max-age=3600, must-revalidate"},{"Name":"Content-Length","Value":"378"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022WeOKCkI7IdJHs2kCqsKgLfiWX4/sNPbaRUspOLefkCY=\u0022"},{"Name":"Last-Modified","Value":"Fri, 12 Jun 2026 22:53:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/LoanShark.SharedUI/background.x2rx4ajns0.png">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\background.png'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"x2rx4ajns0"},{"Name":"integrity","Value":"sha256-WeOKCkI7IdJHs2kCqsKgLfiWX4/sNPbaRUspOLefkCY="},{"Name":"label","Value":"_content/LoanShark.SharedUI/background.png"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"378"},{"Name":"Content-Type","Value":"image/png"},{"Name":"ETag","Value":"\u0022WeOKCkI7IdJHs2kCqsKgLfiWX4/sNPbaRUspOLefkCY=\u0022"},{"Name":"Last-Modified","Value":"Fri, 12 Jun 2026 22:53:39 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/LoanShark.SharedUI/exampleJsInterop.6pqz8bsss0.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\exampleJsInterop.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"6pqz8bsss0"},{"Name":"integrity","Value":"sha256-FrrTtczTUEHjkhc/zWRPC7CmxeXI0JCZGc1\u002B76qQ8B4="},{"Name":"label","Value":"_content/LoanShark.SharedUI/exampleJsInterop.js"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"247"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022FrrTtczTUEHjkhc/zWRPC7CmxeXI0JCZGc1\u002B76qQ8B4=\u0022"},{"Name":"Last-Modified","Value":"Fri, 12 Jun 2026 22:53:39 GMT"},{"Name":"Vary","Value":"Accept-Encoding"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/LoanShark.SharedUI/exampleJsInterop.js">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\exampleJsInterop.js'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-FrrTtczTUEHjkhc/zWRPC7CmxeXI0JCZGc1\u002B76qQ8B4="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"247"},{"Name":"Content-Type","Value":"text/javascript"},{"Name":"ETag","Value":"\u0022FrrTtczTUEHjkhc/zWRPC7CmxeXI0JCZGc1\u002B76qQ8B4=\u0022"},{"Name":"Last-Modified","Value":"Fri, 12 Jun 2026 22:53:39 GMT"},{"Name":"Vary","Value":"Accept-Encoding"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/LoanShark.SharedUI/LoanShark.SharedUI.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\LoanShark.SharedUI.fci9hmx9zd.bundle.scp.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-H9581q8K6UoSnyftH14bozt3yCo5dI0uRfV86qzDYY8="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"211"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022H9581q8K6UoSnyftH14bozt3yCo5dI0uRfV86qzDYY8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 14 Jun 2026 14:52:50 GMT"},{"Name":"Vary","Value":"Accept-Encoding"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/LoanShark.SharedUI/LoanShark.SharedUI.fci9hmx9zd.bundle.scp.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\LoanShark.SharedUI.fci9hmx9zd.bundle.scp.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"fci9hmx9zd"},{"Name":"integrity","Value":"sha256-H9581q8K6UoSnyftH14bozt3yCo5dI0uRfV86qzDYY8="},{"Name":"label","Value":"_content/LoanShark.SharedUI/LoanShark.SharedUI.bundle.scp.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"211"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022H9581q8K6UoSnyftH14bozt3yCo5dI0uRfV86qzDYY8=\u0022"},{"Name":"Last-Modified","Value":"Sun, 14 Jun 2026 14:52:50 GMT"},{"Name":"Vary","Value":"Accept-Encoding"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+  </ItemGroup>
+</Project>

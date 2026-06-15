@@ -71,20 +71,14 @@ Because the core UI is built via **Blazor** in the \LoanShark.SharedUI\ project,
 
 ---
 
-## 📝 Lessons Learned & Troubleshooting (Betterment Loop)
+## 🏛️ Architecture Decision Records (ADR) & The BTB Approach
 
-During cloud deployment and UI modernization, we discovered several critical gotchas to remember for future development:
+We follow the **Better Than Best (BTB)** approach. We believe that what was considered the "best practice" yesterday can always be improved upon today. We maintain an open, infinite loop of betterment, continually optimizing our architecture even into production.
 
-1. **Azure SQL & Entra ID (Managed Identities)**:
-   * **Issue:** `Cannot find an authentication provider for 'ActiveDirectoryDefault'` when EF Core tries to connect to Azure SQL.
-   * **Fix:** You *must* manually install the `Microsoft.Data.SqlClient.Extensions.Azure` NuGet package and register it at startup (`SqlAuthenticationProvider.SetProvider(...)`). The base SQL client no longer ships with Azure AD logic built-in.
-2. **Blazor JSInterop & Prerendering**:
-   * **Issue:** Missing JWT auth tokens when rendering protected pages like `/wallet`. `AuthMessageHandler` crashes silently when trying to invoke `localStorage` via JSInterop.
-   * **Fix:** Blazor prerendering occurs before the browser loads JS. Disable prerendering globally on `<Routes>` and `<HeadOutlet>` using `@rendermode="new InteractiveServerRenderMode(prerender: false)"`, or cache tokens in memory (via scoped state providers) so HTTP pipelines don't depend directly on JS runtime contexts during lifecycle initializations.
-3. **FluentUI Event Bindings**:
-   * **Issue:** FluentUI component events (like `<FluentButton>`) not firing.
-   * **Fix:** Ensure you are using the standard Blazor lower-case `@onclick` directive, not the capitalized `OnClick` parameter which is often swallowed by the component wrapper context. Ensure `InteractiveServer` mode is applied so C# events trigger.
-4. **Environment-Specific Migrations**:
-   * **Issue:** 500 Server Errors because SQL tables are missing in production.
-   * **Fix:** Ensure `db.Database.EnsureCreated()` (or EF Migrations) are executed outside of the `if (app.Environment.IsDevelopment())` block if you want Azure to auto-provision your tables on the first run.
+Our critical architectural choices, including lessons learned from cloud deployments and framework gotchas, are documented in our ADRs:
+- [ADR 0001: Adopt the "Better Than Best" (BTB) Approach](docs/adr/0001-adopt-better-than-best-btb-approach.md)
+- [ADR 0002: Use Azure SQL Entra ID (Managed Identities) Authentication](docs/adr/0002-use-azure-sql-entra-id-managed-identities.md)
+- [ADR 0003: Disable Blazor Prerendering for Auth-Dependent JSInterop](docs/adr/0003-disable-blazor-prerendering-for-auth-interop.md)
+- [ADR 0004: Standardize FluentUI Event Bindings](docs/adr/0004-standardize-fluentui-event-bindings.md)
+- [ADR 0005: Manage Environment-Specific EF Core Migrations](docs/adr/0005-manage-environment-specific-ef-core-migrations.md)
 

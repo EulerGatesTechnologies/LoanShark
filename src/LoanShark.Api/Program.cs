@@ -5,11 +5,16 @@ using Microsoft.IdentityModel.Tokens;
 
 using LoanShark.Api.Validation;
 using FluentValidation;
+using Microsoft.Data.SqlClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
-builder.AddSqlServerDbContext<LoanShark.Api.Entities.LoanSharkDbContext>("sqldata");
+builder.AddSqlServerDbContext<LoanShark.Api.Entities.LoanSharkDbContext>("sqldata", settings =>
+{
+    // Configure Entity Framework / SQL Client to use Entra ID / Default Azure Credential in deployed environments
+    SqlAuthenticationProvider.SetProvider(SqlAuthenticationMethod.ActiveDirectoryDefault, new Microsoft.Data.SqlClient.Extensions.Azure.ActiveDirectoryDefaultAuthenticationProvider());
+});
 
 // Add services to the container.
 builder.Services.AddOpenApi();

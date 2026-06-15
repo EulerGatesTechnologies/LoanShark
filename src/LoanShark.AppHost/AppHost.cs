@@ -12,4 +12,8 @@ builder.AddProject<Projects.LoanShark_Web>("web")
        .WithReference(api)
        .WaitFor(api);
 
+builder.AddExecutable("maui-windows", "dotnet", "../LoanShark.Maui", "run", "-f", "net10.0-windows10.0.19041.0")
+       .WithReference(api)
+       .WaitFor(api);
+
 builder.Build().Run();

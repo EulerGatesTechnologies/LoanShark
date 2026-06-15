@@ -1,2 +1,0 @@
-C:\dev\LoanShark\src\LoanShark.SharedUI\obj\Debug\net10.0\staticwebassets.build.json
-C:\dev\LoanShark\src\LoanShark.SharedUI\obj\Debug\net10.0\staticwebassets.build.json

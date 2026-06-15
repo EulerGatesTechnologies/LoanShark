@@ -40,9 +40,11 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    
-    // Auto-apply migrations for seamless local development
-    using var scope = app.Services.CreateScope();
+}
+
+// Auto-apply migrations/schema for both local and cloud environments
+using (var scope = app.Services.CreateScope())
+{
     var db = scope.ServiceProvider.GetRequiredService<LoanShark.Api.Entities.LoanSharkDbContext>();
     db.Database.EnsureCreated();
 }

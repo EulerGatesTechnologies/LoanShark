@@ -3,6 +3,9 @@ using LoanShark.Api.Endpoints;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
+using LoanShark.Api.Validation;
+using FluentValidation;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
@@ -10,6 +13,7 @@ builder.AddSqlServerDbContext<LoanShark.Api.Entities.LoanSharkDbContext>("sqldat
 
 // Add services to the container.
 builder.Services.AddOpenApi();
+builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

@@ -5,6 +5,8 @@ using LoanShark.Api.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
+using LoanShark.Api.Validation;
+
 namespace LoanShark.Api.Endpoints;
 
 public static class UserEndpoints
@@ -29,7 +31,7 @@ public static class UserEndpoints
             await db.SaveChangesAsync();
 
             return Results.Created($"/api/users/{user.Id}", new UserDto(user.Id, user.Email, user.CreatedAt));
-        });
+        }).AddEndpointFilter<ValidationFilter<CreateUserDto>>();
 
         group.MapPost("/login", async (CreateUserDto request, LoanSharkDbContext db, IConfiguration config) =>
         {

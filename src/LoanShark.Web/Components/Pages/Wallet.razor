@@ -7,6 +7,10 @@
 @if (wallet == null)
 {
     <p><em>Loading...</em></p>
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="text-danger mt-2">@errorMessage</div>
+    }
 }
 else
 {

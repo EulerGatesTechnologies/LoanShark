@@ -79,7 +79,15 @@ else
 
     private async Task LoadLoansAsync()
     {
-        loans = await LoanService.GetLoansAsync();
+        try
+        {
+            loans = await LoanService.GetLoansAsync();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading loans: {ex.Message}";
+            loans = new List<LoanDto>(); // prevent null ref exception
+        }
     }
 
     private async Task CreateLoanAsync()

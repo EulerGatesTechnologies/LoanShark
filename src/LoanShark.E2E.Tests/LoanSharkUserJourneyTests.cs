@@ -8,7 +8,7 @@ namespace LoanShark.E2E.Tests;
 [TestFixture]
 public class LoanSharkUserJourneyTests : PageTest
 {
-    private readonly string _baseUrl = "https://localhost:7073"; // Web URL
+    private readonly string _baseUrl = Environment.GetEnvironmentVariable("BASE_URL") ?? "https://localhost:7073"; // Web URL
 
     public override BrowserNewContextOptions ContextOptions()
     {
@@ -36,20 +36,15 @@ public class LoanSharkUserJourneyTests : PageTest
         await Page.Locator("input[type='password']").First.FillAsync(password);
         
         await Page.ClickAsync("button:has-text('Register')");
-        // Give time for register then auto login
-        await Task.Delay(2000);
-
-        // Wait for redirect to home
-        // We're already on the homepage when we login properly or it routes back
-        await Task.Delay(2000); // Quick hack to wait for login
         
+        // Wait for redirect to home
+        await Page.WaitForURLAsync(new System.Text.RegularExpressions.Regex($".*{_baseUrl.Replace("https://", "")}/?.*"), new() { Timeout = 10000 });
         
         // Verify logged in
-        // (If there's no Logout text, let's just assert we are on the homepage)
         // Let's go to Wallet to verify we can access protected page
         await Page.ClickAsync("text=Wallet");
-        await Page.WaitForURLAsync($"{_baseUrl}/wallet");
-        await Expect(Page.Locator("h3:has-text('My Wallet')")).ToBeVisibleAsync();
+        await Page.WaitForURLAsync(new System.Text.RegularExpressions.Regex($".*{_baseUrl.Replace("https://", "")}/wallet"), new() { Timeout = 10000 });
+        await Expect(Page.Locator("h3:has-text('My Wallet')")).ToBeVisibleAsync(new() { Timeout = 10000 });
         
         Assert.Pass();
     }

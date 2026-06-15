@@ -1,6 +1,6 @@
 # LoanShark — Azure Deployment Plan
 
-**Status:** Draft (awaiting approval)
+**Status:** Validated
 **Recipe:** AZD (Aspire)
 **Mode:** MODIFY (existing .NET Aspire AppHost)
 
@@ -38,8 +38,9 @@
 - SQL Server resource will be published as Azure SQL via `.PublishAsAzureSqlDatabase()` to use managed SQL in Azure (Entra-only auth).
 
 ## 5. Configuration Decisions
-- **Subscription:** _to be confirmed_
-- **Location:** _to be confirmed_
+- **Subscription:** Pay-As-You-Go (`9800d7c0-aaa0-4db9-892d-99085cd5cd7b`)
+- **Tenant:** Eulergates_Technologies_SA_Directory (`d1092155-2cb0-4d19-8acb-aee6f41790d1`)
+- **Location:** South Africa North (`southafricanorth`)
 - **Environment name:** `loanshark-dev`
 
 ## 6. Steps
@@ -51,7 +52,35 @@
 6. Hand off to azure-validate
 
 ## Status Log
-- [ ] Plan approved
-- [ ] AppHost modified for cloud publish
-- [ ] azd init complete
-- [ ] Ready for Validation
+- [x] Plan approved
+- [x] AppHost modified for cloud publish (MAUI excluded from publish, SQL → Azure SQL)
+- [x] `dotnet build` succeeds
+- [x] `azd init --from-code -e loanshark-dev` complete
+- [x] `azure.yaml` generated with correct Aspire `app` service
+- [x] AZURE_SUBSCRIPTION_ID, AZURE_LOCATION, AZURE_TENANT_ID set in azd env
+- [x] AddParameter+WithBuildArg scan: none found
+- [x] Ready for Validation
+
+## 7. Validation Proof
+
+| Check | Command | Result |
+|-------|---------|--------|
+| AZD installed | `azd version` | 1.25.5 ✅ |
+| azure.yaml schema | `mcp_azure_mcp_azd validate_azure_yaml` | Valid against stable schema ✅ |
+| Auth | `azd auth login --check-status` | Logged in as spdkheswa@outlook.com ✅ |
+| Env values | `azd env get-values` | AZURE_ENV_NAME, AZURE_LOCATION (southafricanorth), AZURE_SUBSCRIPTION_ID, AZURE_TENANT_ID all set ✅ |
+| Aspire pre-prov (Functions secrets) | `grep AddAzureFunctionsProject` | Not Functions — skipped ✅ |
+| Provision preview | `azd provision --preview --no-prompt` | SUCCESS in 42s — RG, ACA Env, ACR, Log Analytics, Azure SQL Server ✅ |
+| Build | `dotnet build src\LoanShark.AppHost\LoanShark.AppHost.csproj` | 0 errors, 26 warnings (NU1902 OTel advisories — non-blocking) ✅ |
+| Docker context | n/a | Aspire-managed container builds (no user Dockerfile) ✅ |
+| Package | `azd package --no-prompt` | SUCCESS ✅ |
+| Static role review | Aspire-generated infra | azd will create user-assigned managed identity with ACR Pull + Azure SQL contributor role ✅ |
+
+**Generated resources (preview):**
+- Resource group: `rg-loanshark-dev`
+- Container Apps Environment: `cae-bvvf3sgvstmpm`
+- Container Registry: `acrbvvf3sgvstmpm`
+- Log Analytics workspace: `law-bvvf3sgvstmpm`
+- Azure SQL Server: `sql-bvvf3sgvstmpm` (Entra-only auth)
+
+- [x] **Validated**

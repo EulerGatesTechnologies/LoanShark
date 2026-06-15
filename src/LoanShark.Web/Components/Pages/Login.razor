@@ -1,51 +1,75 @@
 @page "/login"
 @using LoanShark.Web.Services
+@using Microsoft.FluentUI.AspNetCore.Components
 @inject AuthService AuthService
 @inject NavigationManager NavigationManager
 @inject JwtAuthenticationStateProvider AuthStateProvider
 @inject IJSRuntime JSRuntime
 
-<h3>Login</h3>
+<FluentCard Width="400px" Style="margin: 2rem auto; padding: 2rem;">
+    <h3>Login / Register</h3>
 
-@if (!string.IsNullOrEmpty(errorMessage))
-{
-    <div class="alert alert-danger">@errorMessage</div>
-}
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <FluentMessageBar Intent="@MessageIntent.Error" Style="margin-bottom: 1rem;">
+            @errorMessage
+        </FluentMessageBar>
+    }
 
-<div class="mb-3">
-    <label>Email:</label>
-    <input @bind="email" class="form-control" />
-</div>
-<div class="mb-3">
-    <label>Password:</label>
-    <input type="password" @bind="password" class="form-control" />
-</div>
-<button @onclick="LoginAsync" class="btn btn-primary">Login</button>
-<button @onclick="RegisterAsync" class="btn btn-secondary ms-2">Register</button>
+    <FluentStack Orientation="Orientation.Vertical" VerticalGap="15">
+        <FluentTextField @bind-Value="email" Label="Email" Required="true" Style="width: 100%;" />
+        <FluentTextField @bind-Value="password" TextFieldType="TextFieldType.Password" Label="Password" Required="true" Style="width: 100%;" />
+        
+        <FluentStack Orientation="Orientation.Horizontal" HorizontalGap="10" Style="margin-top: 1rem;">
+            <FluentButton Appearance="Appearance.Accent" OnClick="LoginAsync" Loading="@isLoading">Login</FluentButton>
+            <FluentButton Appearance="Appearance.Neutral" OnClick="RegisterAsync" Loading="@isLoading">Register</FluentButton>
+        </FluentStack>
+    </FluentStack>
+</FluentCard>
 
 @code {
     private string email = "";
     private string password = "";
     private string errorMessage = "";
+    private bool isLoading = false;
 
     private async Task RegisterAsync()
     {
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+        {
+            errorMessage = "Email and password are required.";
+            return;
+        }
+
         errorMessage = "";
-        var success = await AuthService.RegisterAsync(email, password);
+        isLoading = true;
+        StateHasChanged();
+
+        var (success, error) = await AuthService.RegisterAsync(email, password);
         if (success)
         {
             await LoginAsync();
         }
         else
         {
-            errorMessage = "Registration failed. Email might already exist.";
+            errorMessage = $"Registration failed: {error}";
+            isLoading = false;
         }
     }
 
     private async Task LoginAsync()
     {
+        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+        {
+            errorMessage = "Email and password are required.";
+            return;
+        }
+
         errorMessage = "";
-        var token = await AuthService.LoginAsync(email, password);
+        isLoading = true;
+        StateHasChanged();
+
+        var (token, error) = await AuthService.LoginAsync(email, password);
         
         if (!string.IsNullOrEmpty(token))
         {
@@ -55,7 +79,9 @@
         }
         else
         {
-            errorMessage = "Invalid login attempt.";
+            errorMessage = $"Login failed: {error}";
+            isLoading = false;
         }
     }
 }
+

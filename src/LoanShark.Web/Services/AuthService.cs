@@ -11,21 +11,41 @@ public class AuthService
         _httpClient = httpClient;
     }
 
-    public async Task<string?> LoginAsync(string email, string password)
+    public async Task<(bool Success, string ErrorMessage)> RegisterAsync(string email, string password)
     {
-        var response = await _httpClient.PostAsJsonAsync("/api/users/login", new { Email = email, Password = password });
-        if (response.IsSuccessStatusCode)
+        try
         {
-            var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
-            return result?.Token;
+            var response = await _httpClient.PostAsJsonAsync("/api/users/register", new { Email = email, Password = password });
+            if (response.IsSuccessStatusCode)
+                return (true, string.Empty);
+            
+            var errorContent = await response.Content.ReadAsStringAsync();
+            return (false, string.IsNullOrWhiteSpace(errorContent) ? $"API returned {response.StatusCode}" : errorContent);
         }
-        return null;
+        catch (Exception ex)
+        {
+            return (false, $"Network error: {ex.Message}");
+        }
     }
 
-    public async Task<bool> RegisterAsync(string email, string password)
+    public async Task<(string? Token, string ErrorMessage)> LoginAsync(string email, string password)
     {
-        var response = await _httpClient.PostAsJsonAsync("/api/users/register", new { Email = email, Password = password });
-        return response.IsSuccessStatusCode;
+        try
+        {
+            var response = await _httpClient.PostAsJsonAsync("/api/users/login", new { Email = email, Password = password });
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<LoginResponse>();
+                return (result?.Token, string.Empty);
+            }
+            
+            var errorContent = await response.Content.ReadAsStringAsync();
+            return (null, string.IsNullOrWhiteSpace(errorContent) ? $"API returned {response.StatusCode}" : errorContent);
+        }
+        catch (Exception ex)
+        {
+            return (null, $"Network error: {ex.Message}");
+        }
     }
 }
 

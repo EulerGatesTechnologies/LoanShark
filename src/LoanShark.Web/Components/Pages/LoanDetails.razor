@@ -29,10 +29,9 @@ else
             <div class="card-body">
                 <h5 class="card-title">Fund this Loan</h5>
                 <div class="mb-3">
-                    <label>Amount to Fund ($):</label>
-                    <input type="number" @bind="fundAmount" class="form-control" max="@(loan.AmountRequested - loan.AmountFunded)" />
+                    <FluentNumberField @bind-Value="fundAmount" Label="Amount to Fund ($):" Max="@((loan.AmountRequested - loan.AmountFunded).ToString())" Style="width: 100%;" />
                 </div>
-                <button class="btn btn-success" @onclick="FundLoanAsync">Fund</button>
+                <FluentButton Appearance="Appearance.Accent" @onclick="FundLoanAsync">Fund</FluentButton>
                 @if (!string.IsNullOrEmpty(errorMessage))
                 {
                     <div class="text-danger mt-2">@errorMessage</div>

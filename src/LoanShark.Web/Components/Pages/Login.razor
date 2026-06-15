@@ -21,8 +21,8 @@
         <FluentTextField @bind-Value="password" TextFieldType="TextFieldType.Password" Label="Password" Required="true" Style="width: 100%;" />
         
         <FluentStack Orientation="Orientation.Horizontal" HorizontalGap="10" Style="margin-top: 1rem;">
-            <FluentButton Appearance="Appearance.Accent" OnClick="LoginAsync" Loading="@isLoading">Login</FluentButton>
-            <FluentButton Appearance="Appearance.Neutral" OnClick="RegisterAsync" Loading="@isLoading">Register</FluentButton>
+            <FluentButton Appearance="Appearance.Accent" @onclick="LoginAsync" Loading="@isLoading">Login</FluentButton>
+            <FluentButton Appearance="Appearance.Neutral" @onclick="RegisterAsync" Loading="@isLoading">Register</FluentButton>
         </FluentStack>
     </FluentStack>
 </FluentCard>

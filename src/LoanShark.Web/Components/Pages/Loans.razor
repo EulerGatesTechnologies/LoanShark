@@ -5,7 +5,7 @@
 
 <h3>Loan Marketplace</h3>
 
-<FluentButton Appearance="Appearance.Accent" class="mb-3" OnClick="() => showCreate = !showCreate">
+<FluentButton Appearance="Appearance.Accent" class="mb-3" @onclick="() => showCreate = !showCreate">
     @(showCreate ? "Cancel" : "Create Loan Request")
 </FluentButton>
 
@@ -15,18 +15,15 @@
         <div class="card-body">
             <h5 class="card-title">New Loan Request</h5>
             <div class="mb-3">
-                <label>Amount ($):</label>
-                <input type="number" @bind="newAmount" class="form-control" />
+                <FluentNumberField @bind-Value="newAmount" Label="Amount ($):" Style="width: 100%;" />
             </div>
             <div class="mb-3">
-                <label>Interest Rate (%):</label>
-                <input type="number" step="0.1" @bind="newInterestRate" class="form-control" />
+                <FluentNumberField @bind-Value="newInterestRate" Step="0.1" Label="Interest Rate (%):" Style="width: 100%;" />
             </div>
             <div class="mb-3">
-                <label>Term (Days):</label>
-                <input type="number" @bind="newTermDays" class="form-control" />
+                <FluentNumberField @bind-Value="newTermDays" Label="Term (Days):" Style="width: 100%;" />
             </div>
-            <button class="btn btn-success" @onclick="CreateLoanAsync">Submit Request</button>
+            <FluentButton Appearance="Appearance.Accent" @onclick="CreateLoanAsync">Submit Request</FluentButton>
             @if (!string.IsNullOrEmpty(errorMessage))
             {
                 <div class="text-danger mt-2">@errorMessage</div>
@@ -58,7 +55,7 @@ else
                             <strong>Term:</strong> @loan.TermDays days<br/>
                             <strong>Status:</strong> @loan.Status
                         </p>
-                        <a href="/loans/@loan.Id" class="btn btn-outline-primary">View / Fund</a>
+                        <FluentAnchor Href="@($"/loans/{loan.Id}")" Appearance="Appearance.Outline">View / Fund</FluentAnchor>
                     </div>
                 </div>
             </div>

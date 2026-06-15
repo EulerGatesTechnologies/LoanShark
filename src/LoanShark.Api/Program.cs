@@ -37,16 +37,21 @@ builder.Services.AddAuthorization();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
+app.UseDeveloperExceptionPage();
+app.MapOpenApi();
 
 // Auto-apply migrations/schema for both local and cloud environments
-using (var scope = app.Services.CreateScope())
+try
 {
-    var db = scope.ServiceProvider.GetRequiredService<LoanShark.Api.Entities.LoanSharkDbContext>();
-    db.Database.EnsureCreated();
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<LoanShark.Api.Entities.LoanSharkDbContext>();
+        db.Database.EnsureCreated();
+    }
+}
+catch (Exception ex)
+{
+    Console.WriteLine($"Database creation failed: {ex}");
 }
 
 app.UseHttpsRedirection();

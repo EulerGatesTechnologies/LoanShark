@@ -32,10 +32,10 @@ public class LoanSharkUserJourneyTests : PageTest
         // 2. Register
         await Page.ClickAsync("text=Login");
         
-        await Page.Locator("input[type='text'], input.form-control").First.FillAsync(email);
-        await Page.Locator("input[type='password']").First.FillAsync(password);
+        await Page.Locator("fluent-text-field").Nth(0).Locator("input").FillAsync(email);
+        await Page.Locator("fluent-text-field").Nth(1).Locator("input").FillAsync(password);
         
-        await Page.ClickAsync("button:has-text('Register')");
+        await Page.Locator("fluent-button:has-text('Register')").ClickAsync();
         
         // Wait for redirect to home
         await Page.WaitForURLAsync(new System.Text.RegularExpressions.Regex($".*{_baseUrl.Replace("https://", "")}/?.*"), new() { Timeout = 10000 });

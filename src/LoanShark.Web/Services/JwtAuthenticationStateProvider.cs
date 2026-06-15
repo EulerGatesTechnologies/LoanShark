@@ -8,6 +8,8 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly IJSRuntime _jsRuntime;
     
+    public string? CurrentToken { get; private set; }
+
     public JwtAuthenticationStateProvider(IJSRuntime jsRuntime)
     {
         _jsRuntime = jsRuntime;
@@ -20,8 +22,12 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
             var token = await _jsRuntime.InvokeAsync<string>("localStorage.getItem", "authToken");
 
             if (string.IsNullOrWhiteSpace(token))
+            {
+                CurrentToken = null;
                 return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
+            }
 
+            CurrentToken = token;
             var claims = ParseClaimsFromJwt(token);
             var identity = new ClaimsIdentity(claims, "jwt");
             var user = new ClaimsPrincipal(identity);
@@ -30,12 +36,14 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
         }
         catch 
         {
+            CurrentToken = null;
             return new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity()));
         }
     }
 
     public void NotifyUserAuthentication(string token)
     {
+        CurrentToken = token;
         var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt"));
         var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
         NotifyAuthenticationStateChanged(authState);
@@ -43,6 +51,7 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
 
     public void NotifyUserLogout()
     {
+        CurrentToken = null;
         var authState = Task.FromResult(new AuthenticationState(new ClaimsPrincipal(new ClaimsIdentity())));
         NotifyAuthenticationStateChanged(authState);
     }

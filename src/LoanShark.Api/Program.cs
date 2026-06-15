@@ -13,7 +13,7 @@ builder.AddServiceDefaults();
 builder.AddSqlServerDbContext<LoanShark.Api.Entities.LoanSharkDbContext>("sqldata", settings =>
 {
     // Configure Entity Framework / SQL Client to use Entra ID / Default Azure Credential in deployed environments
-    SqlAuthenticationProvider.SetProvider(SqlAuthenticationMethod.ActiveDirectoryDefault, new Microsoft.Data.SqlClient.Extensions.Azure.ActiveDirectoryDefaultAuthenticationProvider());
+    SqlAuthenticationProvider.SetProvider(SqlAuthenticationMethod.ActiveDirectoryDefault, new Microsoft.Data.SqlClient.ActiveDirectoryAuthenticationProvider());
 });
 
 // Add services to the container.

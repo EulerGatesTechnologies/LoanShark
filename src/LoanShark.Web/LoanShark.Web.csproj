@@ -3,10 +3,12 @@
   <ItemGroup>
     <ProjectReference Include="..\LoanShark.SharedUI\LoanShark.SharedUI.csproj" />
     <ProjectReference Include="..\LoanShark.ServiceDefaults\LoanShark.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\LoanShark.Client\LoanShark.Client.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="10.0.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="10.0.0-preview.1.25120.3" />
     <PackageReference Include="Microsoft.FluentUI.AspNetCore.Components" Version="4.14.2" />
   </ItemGroup>
 

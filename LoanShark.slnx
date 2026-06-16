@@ -3,6 +3,7 @@
     <Project Path="src/LoanShark.Api.Tests/LoanShark.Api.Tests.csproj" />
     <Project Path="src/LoanShark.Api/LoanShark.Api.csproj" />
     <Project Path="src/LoanShark.AppHost/LoanShark.AppHost.csproj" />
+    <Project Path="src/LoanShark.Client/LoanShark.Client.csproj" />
     <Project Path="src/LoanShark.E2E.Tests/LoanShark.E2E.Tests.csproj" />
     <Project Path="src/LoanShark.Maui/LoanShark.Maui.csproj" />
     <Project Path="src/LoanShark.ServiceDefaults/LoanShark.ServiceDefaults.csproj" />

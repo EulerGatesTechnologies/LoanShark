@@ -1,8 +1,9 @@
-# Loan Shark (P2P Lending App)
+# LoanShark by EulerGates Technologies
 
-A 'BTB' (Better Than Best) standard cross-platform P2P lending application built on the modern Microsoft ecosystem. It includes a backend API, robust financial transactions, and a Blazor-based frontend ready to be packaged for desktop and mobile natively via .NET MAUI.
+A 'BTB' (Better Than Best) standard cross-platform P2P lending application built on the modern Microsoft ecosystem. Powered by EulerGates Technologies (EGT), this platform empowers communities in low-end social areas with seamless, peer-to-peer lending through resilient offline capabilities (PWA).
 
 ## 🚀 Features
+* **Progressive Web App (PWA):** Designed for spotty networks, providing installability and resilient offline interactions.
 * **Authentication:** Secure JWT-based registration and login.
 * **Loan Marketplace:** Borrowers can submit loan requests; Lenders can review and fully or partially fund active loans.
 * **Wallet & Ledger:** Integrated internal wallet for each user to track exact deposits, withdrawals, and robust loan funding movement using Entity Framework Core.

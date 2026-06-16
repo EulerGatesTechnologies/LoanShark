@@ -18,12 +18,12 @@
                 <h3>Welcome back, @context.User.Identity?.Name!</h3>
                 <p>You are ready to participate in the marketplace.</p>
                 <FluentStack Orientation="Orientation.Horizontal" HorizontalGap="10" HorizontalAlignment="HorizontalAlignment.Center" Style="margin-top: 1rem;">
-                    <FluentButton Appearance="Appearance.Accent" Style="width: 150px;">
-                        <a href="/loans" style="color: white; text-decoration: none; display: block; width: 100%;">View Loans</a>
-                    </FluentButton>
-                    <FluentButton Appearance="Appearance.Neutral" Style="width: 150px;">
-                        <a href="/wallet" style="color: inherit; text-decoration: none; display: block; width: 100%;">My Wallet</a>
-                    </FluentButton>
+                    <FluentAnchor Href="/loans" Appearance="Appearance.Accent" Style="width: 150px;">
+                        View Loans
+                    </FluentAnchor>
+                    <FluentAnchor Href="/wallet" Appearance="Appearance.Neutral" Style="width: 150px;">
+                        My Wallet
+                    </FluentAnchor>
                 </FluentStack>
             </FluentCard>
         </Authorized>
@@ -31,9 +31,9 @@
             <FluentCard Style="padding: 1.5rem; margin-top: 2rem; max-width: 500px; width: 100%; box-sizing: border-box;">
                 <h3>Get Started</h3>
                 <p>Join the community to start borrowing or lending today.</p>
-                <FluentButton Appearance="Appearance.Accent" Style="margin-top: 1rem; width: 200px;">
-                    <a href="/login" style="color: white; text-decoration: none; display: block; width: 100%;">Login / Register</a>
-                </FluentButton>
+                <FluentAnchor Href="/login" Appearance="Appearance.Accent" Style="margin-top: 1rem; width: 200px;">
+                    Login / Register
+                </FluentAnchor>
             </FluentCard>
         </NotAuthorized>
     </AuthorizeView>

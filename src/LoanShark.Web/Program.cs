@@ -13,7 +13,7 @@ builder.Services.AddRazorComponents()
 builder.Services.AddFluentUIComponents();
 
 // Add Reverse Proxy
-builder.Services.AddHttpForwarder();
+builder.Services.AddHttpForwarderWithServiceDiscovery();
 
 var app = builder.Build();
 

@@ -1,6 +1,6 @@
 using System.Net.Http.Headers;
 
-namespace LoanShark.Web.Services;
+namespace LoanShark.Client.Services;
 
 public class AuthMessageHandler : DelegatingHandler
 {

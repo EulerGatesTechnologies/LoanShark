@@ -2,7 +2,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 
-namespace LoanShark.Web.Services;
+namespace LoanShark.Client.Services;
 
 public class JwtAuthenticationStateProvider : AuthenticationStateProvider
 {

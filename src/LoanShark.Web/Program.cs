@@ -1,5 +1,4 @@
 using LoanShark.Web.Components;
-using LoanShark.Web.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.FluentUI.AspNetCore.Components;
 
@@ -9,29 +8,12 @@ builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
-
-builder.Services.AddCascadingAuthenticationState();
-builder.Services.AddScoped<JwtAuthenticationStateProvider>();
-builder.Services.AddScoped<AuthenticationStateProvider>(p => p.GetRequiredService<JwtAuthenticationStateProvider>());
-
-builder.Services.AddTransient<AuthMessageHandler>();
-
-var apiBaseUrl = builder.Configuration["ApiBaseUrl"] ?? "https+http://api";
-
-builder.Services.AddHttpClient<AuthService>(client =>
-    client.BaseAddress = new Uri(apiBaseUrl))
-    .AddHttpMessageHandler<AuthMessageHandler>();
-
-builder.Services.AddHttpClient<LoanService>(client =>
-    client.BaseAddress = new Uri(apiBaseUrl))
-    .AddHttpMessageHandler<AuthMessageHandler>();
-
-builder.Services.AddHttpClient<WalletService>(client =>
-    client.BaseAddress = new Uri(apiBaseUrl))
-    .AddHttpMessageHandler<AuthMessageHandler>();
+    .AddInteractiveWebAssemblyComponents();
 
 builder.Services.AddFluentUIComponents();
+
+// Add Reverse Proxy
+builder.Services.AddHttpForwarder();
 
 var app = builder.Build();
 
@@ -50,6 +32,10 @@ app.UseAntiforgery();
 
 app.MapStaticAssets();
 app.MapRazorComponents<App>()
-    .AddInteractiveServerRenderMode();
+    .AddInteractiveWebAssemblyRenderMode()
+    .AddAdditionalAssemblies(typeof(LoanShark.Client._Imports).Assembly);
+
+// Forward API requests to the API project
+app.MapForwarder("/api/{**catch-all}", "https+http://api");
 
 app.Run();

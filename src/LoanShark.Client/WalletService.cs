@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
 
-namespace LoanShark.Web.Services;
+namespace LoanShark.Client.Services;
 
 public class WalletService
 {

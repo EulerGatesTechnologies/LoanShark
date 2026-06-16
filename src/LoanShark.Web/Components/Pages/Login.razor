@@ -7,7 +7,7 @@
 @inject JwtAuthenticationStateProvider AuthStateProvider
 @inject IJSRuntime JSRuntime
 
-<FluentCard Width="400px" Style="margin: 2rem auto; padding: 2rem;">
+<FluentCard Style="width: 100%; max-width: 400px; margin: 2rem auto; padding: 2rem; box-sizing: border-box;">
     <h3>Login / Register</h3>
 
     @if (!string.IsNullOrEmpty(errorMessage))

@@ -1,0 +1,5 @@
+{
+  "appHost": {
+    "path": "src/LoanShark.AppHost/LoanShark.AppHost.csproj"
+  }
+}

@@ -1,0 +1,79 @@
+@page "/loans/{id:guid}"
+@using LoanShark.Web.Services
+@inject LoanService LoanService
+@inject NavigationManager NavigationManager
+
+@if (loan == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <h3>Loan Details</h3>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Requested: $@loan.AmountRequested</h5>
+            <p class="card-text">
+                <strong>Funded:</strong> $@loan.AmountFunded<br/>
+                <strong>Remaining:</strong> $@(loan.AmountRequested - loan.AmountFunded)<br/>
+                <strong>Interest:</strong> @loan.InterestRate%<br/>
+                <strong>Term:</strong> @loan.TermDays days<br/>
+                <strong>Status:</strong> @loan.Status
+            </p>
+        </div>
+    </div>
+
+    @if (loan.Status == "Pending")
+    {
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Fund this Loan</h5>
+                <div class="mb-3">
+                    <FluentNumberField @bind-Value="fundAmount" Label="Amount to Fund ($):" Max="@((loan.AmountRequested - loan.AmountFunded).ToString())" Style="width: 100%;" />
+                </div>
+                <FluentButton Appearance="Appearance.Accent" @onclick="FundLoanAsync">Fund</FluentButton>
+                @if (!string.IsNullOrEmpty(errorMessage))
+                {
+                    <div class="text-danger mt-2">@errorMessage</div>
+                }
+            </div>
+        </div>
+    }
+}
+
+@code {
+    [Parameter]
+    public Guid Id { get; set; }
+
+    private LoanDto? loan;
+    private decimal fundAmount;
+    private string errorMessage = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadLoanAsync();
+    }
+
+    private async Task LoadLoanAsync()
+    {
+        loan = await LoanService.GetLoanAsync(Id);
+        if (loan != null)
+        {
+            fundAmount = loan.AmountRequested - loan.AmountFunded;
+        }
+    }
+
+    private async Task FundLoanAsync()
+    {
+        errorMessage = "";
+        var success = await LoanService.FundLoanAsync(Id, fundAmount);
+        if (success)
+        {
+            await LoadLoanAsync();
+        }
+        else
+        {
+            errorMessage = "Failed to fund loan. Make sure you are logged in and not funding your own loan.";
+        }
+    }
+}

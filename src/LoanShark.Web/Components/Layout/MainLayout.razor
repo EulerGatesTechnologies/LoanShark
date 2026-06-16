@@ -1,0 +1,24 @@
+﻿@inherits LayoutComponentBase
+
+<FluentLayout>
+    <FluentHeader>
+        <span style="font-size: 1.5rem; font-weight: bold; margin-right: 1rem;">LoanShark</span>
+    </FluentHeader>
+    
+    <FluentStack Orientation="Orientation.Horizontal" Width="100%" Style="height: calc(100vh - 50px);">
+        <div style="width: 250px; border-right: 1px solid var(--neutral-stroke-divider-rest);">
+            <NavMenu />
+        </div>
+        <FluentBodyContent>
+            <div class="px-4 py-4" style="width: 100%; height: 100%; overflow-y: auto;">
+                @Body
+            </div>
+        </FluentBodyContent>
+    </FluentStack>
+</FluentLayout>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>

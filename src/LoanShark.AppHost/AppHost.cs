@@ -2,7 +2,6 @@ var builder = DistributedApplication.CreateBuilder(args);
 
 var sqldata = builder.AddAzureSqlServer("sql")
                      .RunAsContainer()
-                     .PublishAsAzureSqlDatabase()
                      .AddDatabase("sqldata");
 
 var api = builder.AddProject<Projects.LoanShark_Api>("api")

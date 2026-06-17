@@ -17,8 +17,13 @@ builder.Services.AddScoped<AuthenticationStateProvider>(p => p.GetRequiredServic
 builder.Services.AddTransient<AuthMessageHandler>();
 
 // The api endpoint injected by Aspire is usually relative or we can get it from configuration. 
-// For now, let's use builder.Configuration["ApiBaseUrl"] if set, otherwise fallback to "/api"
+// For now, let's use builder.Configuration["ApiBaseUrl"] if set, otherwise fallback to base address
 var apiBaseUrl = builder.Configuration["ApiBaseUrl"] ?? builder.HostEnvironment.BaseAddress;
+
+// IMPORTANT: WebAssembly running on a sub-path or root needs to target the proxy which is at the same origin.
+// In this case, our Web project routes /api to the backend. We don't need a full URL if we're on the same origin, 
+// just the base address since the proxy handles the `/api` prefix internally, BUT our services append `/api/users/login` etc.
+// So the base address should just be the HostEnvironment.BaseAddress.
 
 builder.Services.AddHttpClient<AuthService>(client =>
     client.BaseAddress = new Uri(apiBaseUrl))

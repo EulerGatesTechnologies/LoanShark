@@ -30,7 +30,7 @@ public class LoanSharkUserJourneyTests : PageTest
         var password = "Password123!";
 
         // 2. Register
-        await Page.ClickAsync("text=Login");
+        await Page.ClickAsync("text=Login / Register");
         
         await Page.Locator("fluent-text-field").Nth(0).Locator("input").FillAsync(email);
         await Page.Locator("fluent-text-field").Nth(1).Locator("input").FillAsync(password);

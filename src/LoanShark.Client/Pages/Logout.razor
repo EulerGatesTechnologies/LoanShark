@@ -1,0 +1,14 @@
+@page "/logout"
+@using LoanShark.Client.Services
+@inject JwtAuthenticationStateProvider AuthStateProvider
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await JSRuntime.InvokeVoidAsync("localStorage.removeItem", "authToken");
+        AuthStateProvider.NotifyUserLogout();
+        NavigationManager.NavigateTo("/");
+    }
+}

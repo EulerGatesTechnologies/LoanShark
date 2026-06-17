@@ -1,6 +1,14 @@
-<FluentNavMenu Width="250" Collapsible="true">
-    <FluentNavLink Href="" Match="NavLinkMatch.All">Home</FluentNavLink>
-    <FluentNavLink Href="loans">Loans</FluentNavLink>
-    <FluentNavLink Href="wallet">Wallet</FluentNavLink>
-    <FluentNavLink Href="login">Login</FluentNavLink>
+<FluentNavMenu Width="100%" Collapsible="false">
+    <FluentNavLink Href="" Match="NavLinkMatch.All" Icon="@(new Icons.Regular.Size20.Home())">Home</FluentNavLink>
+    <AuthorizeView>
+        <Authorized>
+            <FluentNavLink Href="loans" Icon="@(new Icons.Regular.Size20.Money())">Loans</FluentNavLink>
+            <FluentNavLink Href="wallet" Icon="@(new Icons.Regular.Size20.Wallet())">Wallet</FluentNavLink>
+        </Authorized>
+    </AuthorizeView>
+    <AuthorizeView>
+        <NotAuthorized>
+            <FluentNavLink Href="login" Icon="@(new Icons.Regular.Size20.Person())">Login / Register</FluentNavLink>
+        </NotAuthorized>
+    </AuthorizeView>
 </FluentNavMenu>

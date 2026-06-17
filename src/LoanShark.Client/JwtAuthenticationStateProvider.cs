@@ -29,7 +29,7 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
 
             CurrentToken = token;
             var claims = ParseClaimsFromJwt(token);
-            var identity = new ClaimsIdentity(claims, "jwt");
+            var identity = new ClaimsIdentity(claims, "jwt", "email", "role");
             var user = new ClaimsPrincipal(identity);
 
             return new AuthenticationState(user);
@@ -44,7 +44,7 @@ public class JwtAuthenticationStateProvider : AuthenticationStateProvider
     public void NotifyUserAuthentication(string token)
     {
         CurrentToken = token;
-        var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt"));
+        var authenticatedUser = new ClaimsPrincipal(new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt", "email", "role"));
         var authState = Task.FromResult(new AuthenticationState(authenticatedUser));
         NotifyAuthenticationStateChanged(authState);
     }

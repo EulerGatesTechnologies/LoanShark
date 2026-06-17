@@ -1,0 +1,46 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e6]: LoanShark
+  - generic [ref=e7]:
+    - menu [ref=e9]:
+      - menuitem "Navigation menu" [expanded] [ref=e10]:
+        - img [ref=e13]
+      - menuitem "Home" [ref=e15]:
+        - link "Home" [ref=e16] [cursor=pointer]:
+          - /url: ""
+          - generic [ref=e19]: Home
+      - menuitem "Loans" [ref=e20]:
+        - link "Loans" [ref=e21] [cursor=pointer]:
+          - /url: loans
+          - generic [ref=e24]: Loans
+      - menuitem "Wallet" [ref=e25]:
+        - link "Wallet" [ref=e26] [cursor=pointer]:
+          - /url: wallet
+          - generic [ref=e29]: Wallet
+      - menuitem "Login" [ref=e30]:
+        - link "Login" [ref=e31] [cursor=pointer]:
+          - /url: login
+          - generic [ref=e34]: Login
+    - generic [ref=e37]:
+      - generic:
+        - heading "Login / Register" [level=3] [ref=e38]
+        - generic [ref=e65]:
+          - img [ref=e67]
+          - generic [ref=e69]: "Registration failed: {\"type\":\"https://tools.ietf.org/html/rfc9110#section-15.5.1\",\"title\":\"One or more validation errors occurred.\",\"status\":400,\"errors\":{\"Password\":[\"Password must contain at least one uppercase letter.\",\"Password must contain at least one special character.\"]}}"
+          - img [ref=e71] [cursor=pointer]
+        - generic [ref=e39]:
+          - generic [ref=e40] [cursor=pointer]:
+            - text: Email
+            - generic: "*"
+          - textbox "Email" [ref=e43]: borrower@test.com
+          - generic [ref=e44] [cursor=pointer]:
+            - text: Password
+            - generic: "*"
+          - textbox "Password" [ref=e47]: password123
+          - generic [ref=e48]:
+            - button "Login" [ref=e74] [cursor=pointer]:
+              - generic:
+                - generic: Login
+            - button "Register" [ref=e76] [cursor=pointer]:
+              - generic:
+                - generic: Register

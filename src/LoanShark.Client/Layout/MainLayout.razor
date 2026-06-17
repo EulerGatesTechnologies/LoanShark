@@ -1,21 +1,57 @@
 ﻿@inherits LayoutComponentBase
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthStateProvider
 
 <FluentLayout>
     <FluentHeader>
         <span style="font-size: 1.5rem; font-weight: bold; margin-right: 1rem;">LoanShark</span>
+        <FluentSpacer />
+        <AuthorizeView>
+            <Authorized>
+                <span style="margin-right: 1rem; color: white;">@context.User.Identity?.Name</span>
+                <FluentAnchor Href="logout" Appearance="Appearance.Stealth" Style="color: white;">Logout</FluentAnchor>
+            </Authorized>
+        </AuthorizeView>
     </FluentHeader>
     
-    <FluentStack Orientation="Orientation.Horizontal" Width="100%" Style="height: calc(100vh - 50px);">
-        <div style="width: 250px; border-right: 1px solid var(--neutral-stroke-divider-rest);">
+    <div class="main-container">
+        <div class="sidebar">
             <NavMenu />
         </div>
-        <FluentBodyContent>
+        <FluentBodyContent class="content">
             <div class="px-4 py-4" style="width: 100%; height: 100%; overflow-y: auto;">
                 @Body
             </div>
         </FluentBodyContent>
-    </FluentStack>
+    </div>
 </FluentLayout>
+
+<style>
+    .main-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: calc(100vh - 50px);
+    }
+    .sidebar {
+        width: 250px;
+        border-right: 1px solid var(--neutral-stroke-divider-rest);
+    }
+    .content {
+        flex-grow: 1;
+    }
+    @@media (max-width: 768px) {
+        .main-container {
+            flex-direction: column;
+        }
+        .sidebar {
+            width: 100%;
+            border-right: none;
+            border-bottom: 1px solid var(--neutral-stroke-divider-rest);
+            height: auto;
+        }
+    }
+</style>
 
 <div id="blazor-error-ui" data-nosnippet>
     An unhandled error has occurred.

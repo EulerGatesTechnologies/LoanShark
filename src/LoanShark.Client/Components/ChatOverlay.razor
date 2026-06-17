@@ -1,0 +1,154 @@
+@using LoanShark.Client.Services
+@using Microsoft.FluentUI.AspNetCore.Components
+@inject ChatService ChatService
+
+<div class="chat-overlay-container @(isOpen ? "open" : "")">
+    @if (isOpen)
+    {
+        <FluentCard class="chat-card">
+            <div class="chat-header">
+                <span style="font-weight: bold;">AI Interaction Guide</span>
+                <FluentButton Appearance="Appearance.Stealth" OnClick="ToggleChat">Close</FluentButton>
+            </div>
+            
+            <div class="chat-messages" id="chat-messages-container">
+                @foreach (var msg in messages)
+                {
+                    <div class="message @(msg.Role == "user" ? "user-message" : "ai-message")">
+                        @msg.Content
+                    </div>
+                }
+                @if (isLoading)
+                {
+                    <div class="message ai-message">
+                        <FluentProgressRing />
+                    </div>
+                }
+            </div>
+
+            <div class="chat-input-area">
+                <FluentTextField @bind-Value="currentMessage" Placeholder="Ask me anything..." Style="flex-grow: 1;" @onkeyup="HandleKeyUp" />
+                <FluentButton Appearance="Appearance.Accent" OnClick="SendMessage" Disabled="@(isLoading || string.IsNullOrWhiteSpace(currentMessage))">Send</FluentButton>
+            </div>
+        </FluentCard>
+    }
+    else
+    {
+        <FluentButton Appearance="Appearance.Accent" class="chat-fab" OnClick="ToggleChat" Circular="true" Style="width: 60px; height: 60px; border-radius: 50%;">Chat</FluentButton>
+    }
+</div>
+
+<style>
+    .chat-overlay-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 9999;
+    }
+
+    .chat-card {
+        width: 350px;
+        height: 500px;
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .chat-header {
+        background-color: var(--accent-fill-rest);
+        color: white;
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top-left-radius: calc(var(--layer-corner-radius) * 1px);
+        border-top-right-radius: calc(var(--layer-corner-radius) * 1px);
+    }
+
+    .chat-messages {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .message {
+        padding: 10px 15px;
+        border-radius: 12px;
+        max-width: 85%;
+        word-wrap: break-word;
+    }
+
+    .user-message {
+        background-color: var(--accent-fill-rest);
+        color: white;
+        align-self: flex-end;
+        border-bottom-right-radius: 2px;
+    }
+
+    .ai-message {
+        background-color: var(--neutral-fill-rest);
+        color: var(--neutral-foreground-rest);
+        align-self: flex-start;
+        border-bottom-left-radius: 2px;
+        border: 1px solid var(--neutral-stroke-divider-rest);
+    }
+
+    .chat-input-area {
+        display: flex;
+        gap: 10px;
+        padding: 15px;
+        border-top: 1px solid var(--neutral-stroke-divider-rest);
+    }
+
+    .chat-fab {
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+</style>
+
+@code {
+    private bool isOpen = false;
+    private string currentMessage = "";
+    private bool isLoading = false;
+    
+    private List<ChatMessageDto> messages = new List<ChatMessageDto>
+    {
+        new ChatMessageDto("assistant", "Hi there! I'm your AI guide. How can I help you with LoanShark today?")
+    };
+
+    private void ToggleChat()
+    {
+        isOpen = !isOpen;
+    }
+
+    private async Task HandleKeyUp(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            await SendMessage();
+        }
+    }
+
+    private async Task SendMessage()
+    {
+        if (string.IsNullOrWhiteSpace(currentMessage) || isLoading)
+            return;
+
+        var messageText = currentMessage;
+        currentMessage = "";
+        
+        messages.Add(new ChatMessageDto("user", messageText));
+        isLoading = true;
+        StateHasChanged();
+
+        var history = messages.SkipLast(1).ToList();
+        var response = await ChatService.SendMessageAsync(messageText, history);
+
+        messages.Add(new ChatMessageDto("assistant", response));
+        isLoading = false;
+        StateHasChanged();
+    }
+}

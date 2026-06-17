@@ -35,6 +35,9 @@ builder.Services.AddHttpClient<WalletService>(client =>
     client.BaseAddress = new Uri(apiBaseUrl))
     .AddHttpMessageHandler<AuthMessageHandler>();
 
+builder.Services.AddHttpClient<ChatService>(client =>
+    client.BaseAddress = new Uri(apiBaseUrl));
+
 builder.Services.AddFluentUIComponents();
 
 await builder.Build().RunAsync();

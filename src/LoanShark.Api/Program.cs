@@ -38,6 +38,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddAuthorization();
+builder.Services.AddHttpClient("GitHubModels", client =>
+{
+    client.BaseAddress = new Uri("https://models.inference.ai.azure.com");
+    var token = builder.Configuration["GitHubModels:Token"];
+    if (!string.IsNullOrEmpty(token))
+    {
+        client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+    }
+});
 
 var app = builder.Build();
 
@@ -67,6 +76,7 @@ app.UseAuthorization();
 app.MapUserEndpoints();
 app.MapLoanEndpoints();
 app.MapWalletEndpoints();
+app.MapChatEndpoints();
 
 app.Run();
 

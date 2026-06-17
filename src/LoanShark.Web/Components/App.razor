@@ -17,7 +17,9 @@
 </head>
 
 <body>
-    <LoanShark.Client.Routes @rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)" />
+    <div id="app">
+        <LoanShark.Client.Routes @rendermode="new InteractiveWebAssemblyRenderMode(prerender: false)" />
+    </div>
     <script src="_framework/blazor.web.js"></script>
     <script>navigator.serviceWorker.register('service-worker.js');</script>
 </body>
